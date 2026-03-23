@@ -83,7 +83,7 @@ WSGI_APPLICATION = 'core.wsgi.application'
 
 DATABASES = {
     'default': dj_database_url.parse(
-        "postgresql://postgres:Ankit%40supabase26@db.ylktnilmabdijgcyuwof.supabase.co:5432/postgres"
+        os.environ.get("DATABASE_URL", "sqlite:///db.sqlite3")
     )
 }
 
