@@ -1,0 +1,539 @@
+
+
+
+
+{% extends 'base.html' %}
+
+{% block content %}
+<style>
+    /* Project Detail page specific styles - using only px units */
+    .project-hero {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        padding: 80px 0 60px 0;
+        margin-bottom: 50px;
+        position: relative;
+        overflow: hidden;
+    }
+    
+    .project-hero::before {
+        content: '';
+        position: absolute;
+        top: -50%;
+        right: -50%;
+        width: 200%;
+        height: 200%;
+        background: radial-gradient(circle, rgba(255,255,255,0.1) 1%, transparent 1%);
+        background-size: 50px 50px;
+        animation: shimmer 20s linear infinite;
+    }
+    
+    @keyframes shimmer {
+        0% {
+            transform: translate(0, 0);
+        }
+        100% {
+            transform: translate(50px, 50px);
+        }
+    }
+    
+    .project-title {
+        font-size: 48px;
+        font-weight: 800;
+        color: white;
+        margin-bottom: 20px;
+        position: relative;
+        z-index: 1;
+    }
+    
+    .project-meta {
+        display: flex;
+        gap: 20px;
+        justify-content: center;
+        flex-wrap: wrap;
+        position: relative;
+        z-index: 1;
+    }
+    
+    .meta-item {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        color: rgba(255, 255, 255, 0.9);
+        font-size: 14px;
+        padding: 6px 12px;
+        background: rgba(255, 255, 255, 0.2);
+        border-radius: 50px;
+        backdrop-filter: blur(10px);
+    }
+    
+    .meta-item i {
+        font-size: 14px;
+    }
+    
+    .project-content-wrapper {
+        background: white;
+        border-radius: 24px;
+        padding: 40px;
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+        margin-bottom: 50px;
+    }
+    
+    .project-image {
+        margin-bottom: 40px;
+        border-radius: 16px;
+        overflow: hidden;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    }
+    
+    .project-image img {
+        width: 100%;
+        height: auto;
+        display: block;
+        transition: transform 0.3s ease;
+    }
+    
+    .project-image:hover img {
+        transform: scale(1.02);
+    }
+    
+    .project-description {
+        margin-bottom: 40px;
+    }
+    
+    .project-description h3 {
+        font-size: 28px;
+        font-weight: 700;
+        color: #2d3748;
+        margin-bottom: 20px;
+        position: relative;
+        padding-bottom: 12px;
+    }
+    
+    .project-description h3::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 50px;
+        height: 3px;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        border-radius: 2px;
+    }
+    
+    .project-description p {
+        font-size: 16px;
+        color: #4a5568;
+        line-height: 1.8;
+        margin-bottom: 20px;
+    }
+    
+    .tech-section {
+        margin-bottom: 40px;
+        padding: 30px;
+        background: #f7fafc;
+        border-radius: 16px;
+    }
+    
+    .tech-section h4 {
+        font-size: 20px;
+        font-weight: 700;
+        color: #2d3748;
+        margin-bottom: 20px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+    
+    .tech-section h4 i {
+        color: #667eea;
+        font-size: 24px;
+    }
+    
+    .tech-badges {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+    }
+    
+    .badge-item {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 8px 20px;
+        background: white;
+        color: #4a5568;
+        border-radius: 50px;
+        font-size: 14px;
+        font-weight: 500;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        transition: all 0.3s ease;
+        border: 1px solid #e2e8f0;
+    }
+    
+    .badge-item:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(102, 126, 234, 0.2);
+        border-color: #667eea;
+        color: #667eea;
+    }
+    
+    .badge-item i {
+        font-size: 14px;
+        color: #667eea;
+    }
+    
+    .action-buttons {
+        display: flex;
+        gap: 20px;
+        justify-content: center;
+        flex-wrap: wrap;
+        margin-top: 30px;
+    }
+    
+    .btn-github {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        padding: 12px 32px;
+        background: #24292e;
+        color: white;
+        text-decoration: none;
+        border-radius: 50px;
+        font-weight: 600;
+        font-size: 16px;
+        transition: all 0.3s ease;
+        border: none;
+        cursor: pointer;
+    }
+    
+    .btn-github:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 8px 20px rgba(36, 41, 46, 0.3);
+        color: white;
+    }
+    
+    .btn-live {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        padding: 12px 32px;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        text-decoration: none;
+        border-radius: 50px;
+        font-weight: 600;
+        font-size: 16px;
+        transition: all 0.3s ease;
+        border: none;
+        cursor: pointer;
+        box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+    }
+    
+    .btn-live:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+        color: white;
+    }
+    
+    .btn-back {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 10px 24px;
+        background: white;
+        color: #4a5568;
+        text-decoration: none;
+        border-radius: 50px;
+        font-weight: 500;
+        font-size: 14px;
+        transition: all 0.3s ease;
+        border: 2px solid #e2e8f0;
+        margin-bottom: 20px;
+    }
+    
+    .btn-back:hover {
+        border-color: #667eea;
+        color: #667eea;
+        transform: translateX(-5px);
+    }
+    
+    .related-section {
+        background: #f7fafc;
+        padding: 50px 0;
+        margin-top: 50px;
+    }
+    
+    .related-title {
+        font-size: 28px;
+        font-weight: 700;
+        color: #2d3748;
+        margin-bottom: 30px;
+        text-align: center;
+        position: relative;
+    }
+    
+    .related-title::after {
+        content: '';
+        position: absolute;
+        bottom: -10px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 60px;
+        height: 3px;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        border-radius: 2px;
+    }
+    
+    .related-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 30px;
+    }
+    
+    .related-card {
+        background: white;
+        border-radius: 16px;
+        overflow: hidden;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+        transition: all 0.3s ease;
+        text-decoration: none;
+        display: block;
+    }
+    
+    .related-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.12);
+    }
+    
+    .related-img {
+        width: 100%;
+        height: 180px;
+        overflow: hidden;
+    }
+    
+    .related-img img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.3s ease;
+    }
+    
+    .related-card:hover .related-img img {
+        transform: scale(1.1);
+    }
+    
+    .related-content {
+        padding: 20px;
+    }
+    
+    .related-content h5 {
+        font-size: 16px;
+        font-weight: 700;
+        color: #2d3748;
+        margin-bottom: 10px;
+    }
+    
+    .related-tech {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px;
+    }
+    
+    .related-tech span {
+        font-size: 10px;
+        padding: 4px 10px;
+        background: #edf2f7;
+        border-radius: 20px;
+        color: #4a5568;
+    }
+    
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+    
+    .animate-fade-in {
+        animation: fadeInUp 0.6s ease-out;
+    }
+    
+    @media (max-width: 768px) {
+        .project-hero {
+            padding: 50px 0 40px 0;
+        }
+        
+        .project-title {
+            font-size: 32px;
+        }
+        
+        .project-content-wrapper {
+            padding: 20px;
+            margin: 0 15px 50px 15px;
+        }
+        
+        .project-description h3 {
+            font-size: 24px;
+        }
+        
+        .tech-section {
+            padding: 20px;
+        }
+        
+        .action-buttons {
+            flex-direction: column;
+            align-items: stretch;
+        }
+        
+        .btn-github, .btn-live {
+            justify-content: center;
+        }
+        
+        .related-grid {
+            grid-template-columns: 1fr;
+            padding: 0 15px;
+        }
+        
+        .btn-back {
+            margin-left: 15px;
+        }
+    }
+</style>
+
+<div class="project-hero">
+    <div class="container text-center">
+        <h1 class="project-title" data-aos="fade-up">{{ project.title }}</h1>
+        <div class="project-meta" data-aos="fade-up" data-aos-delay="100">
+            <div class="meta-item">
+                <i class="fas fa-calendar-alt"></i>
+                <span>Published: {{ project.created_at|date:"F d, Y" }}</span>
+            </div>
+            <div class="meta-item">
+                <i class="fas fa-tags"></i>
+                <span>{{ project.technologies.count }} Technologies</span>
+            </div>
+            {% if project.last_updated %}
+            <div class="meta-item">
+                <i class="fas fa-edit"></i>
+                <span>Updated: {{ project.last_updated|date:"F d, Y" }}</span>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <a href="/projects/" class="btn-back" data-aos="fade-up">
+        <i class="fas fa-arrow-left"></i> Back to Projects
+    </a>
+    
+    <div class="project-content-wrapper animate-fade-in" data-aos="fade-up">
+        <!-- IMAGE -->
+        {% if project.image %}
+        <div class="project-image">
+            <img src="{{ project.image.url }}" alt="{{ project.title }}">
+        </div>
+        {% endif %}
+        
+        <!-- DESCRIPTION -->
+        <div class="project-description">
+            <h3>Project Overview</h3>
+            <p>{{ project.description|linebreaks }}</p>
+        </div>
+        
+        <!-- TECHNOLOGIES -->
+        <div class="tech-section">
+            <h4>
+                <i class="fas fa-code"></i>
+                Technologies Used
+            </h4>
+            <div class="tech-badges">
+                {% for tech in project.technologies.all %}
+                <span class="badge-item">
+                    <i class="fas fa-cube"></i>
+                    {{ tech.name }}
+                </span>
+                {% endfor %}
+            </div>
+        </div>
+        
+        <!-- LINKS -->
+        <div class="action-buttons">
+            {% if project.github_link %}
+            <a href="{{ project.github_link }}" target="_blank" class="btn-github">
+                <i class="fa-brands fa-github fa-lg"></i>
+                View Source Code
+            </a>
+            {% endif %}
+            
+            {% if project.live_link %}
+            <a href="{{ project.live_link }}" target="_blank" class="btn-live">
+                <i class="fa-solid fa-globe fa-lg"></i>
+                Live Demo
+            </a>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+{% if related_projects %}
+<div class="related-section">
+    <div class="container">
+        <h3 class="related-title" data-aos="fade-up">Related Projects</h3>
+        <div class="related-grid">
+            {% for related in related_projects %}
+            <a href="{% url 'project_detail' related.id %}" class="related-card" data-aos="fade-up" data-aos-delay="{{ forloop.counter|add:50 }}">
+                <div class="related-img">
+                    <img src="{{ related.image.url }}" alt="{{ related.title }}">
+                </div>
+                <div class="related-content">
+                    <h5>{{ related.title }}</h5>
+                    <div class="related-tech">
+                        {% for tech in related.technologies.all|slice:":3" %}
+                        <span>{{ tech.name }}</span>
+                        {% endfor %}
+                        {% if related.technologies.count > 3 %}
+                        <span>+{{ related.technologies.count|add:"-3" }}</span>
+                        {% endif %}
+                    </div>
+                </div>
+            </a>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endif %}
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Add smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+        
+        // Add image loading animation
+        const images = document.querySelectorAll('.project-image img, .related-img img');
+        images.forEach(img => {
+            img.addEventListener('load', function() {
+                this.style.opacity = '1';
+            });
+            if (img.complete) {
+                img.style.opacity = '1';
+            }
+        });
+    });
+</script>
+{% endblock %}

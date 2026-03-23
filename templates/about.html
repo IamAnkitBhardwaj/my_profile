@@ -1,0 +1,118 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<style>
+    /* ABOUT TEXT */
+.about-text {
+    max-width: 700px;
+    margin: auto;
+    opacity: 0.8;
+}
+
+/* STATS */
+.stat-card {
+    background: var(--card-color);
+    padding: 20px;
+    border-radius: 10px;
+    transition: 0.3s;
+}
+
+.stat-card:hover {
+    transform: translateY(-5px);
+}
+
+.stat-card h3 {
+    color: var(--primary);
+}
+
+/* SECTION SPACING */
+.section-title {
+    font-size: 26px;
+}
+</style>
+<div class="container mt-5">
+
+    <!-- ABOUT INTRO -->
+    <div class="text-center mb-5" data-aos="fade-up">
+        <h2 class="section-title">About Me</h2>
+        <p class="about-text mt-3">
+            {{ profile.bio }}
+        </p>
+    </div>
+
+    <!-- STATS -->
+    <div class="row text-center mb-5">
+        <div class="col-md-3 col-6 mb-3" data-aos="zoom-in">
+            <div class="stat-card">
+                <h3>{{ projects.count }}</h3>
+                <p>Projects</p>
+            </div>
+        </div>
+
+        <div class="col-md-3 col-6 mb-3" data-aos="zoom-in">
+            <div class="stat-card">
+                <h3>{{ clients.count }}</h3>
+                <p>Clients</p>
+            </div>
+        </div>
+
+        <div class="col-md-3 col-6 mb-3" data-aos="zoom-in">
+            <div class="stat-card">
+                <h3>{{ certifications.count }}</h3>
+                <p>Certifications</p>
+            </div>
+        </div>
+
+        <div class="col-md-3 col-6 mb-3" data-aos="zoom-in">
+            <div class="stat-card">
+                <h3>{{ skills.count }}</h3>
+                <p>Skills</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- EDUCATION -->
+    <h3 class="section-title text-center mb-4">Education</h3>
+    <div class="row justify-content-center">
+        {% for edu in education %}
+        <div class="col-md-4 mb-4" data-aos="fade-up">
+            <div class="modern-card">
+                <h5>{{ edu.degree }}</h5>
+                <p>{{ edu.institute }}</p>
+                <span>{{ edu.year }}</span>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+    <!-- EXPERIENCE -->
+    <h3 class="section-title text-center mb-4 mt-5">Experience</h3>
+    <div class="row justify-content-center">
+        {% for exp in experience %}
+        <div class="col-md-4 mb-4" data-aos="fade-up">
+            <div class="modern-card">
+                <h5>{{ exp.role }}</h5>
+                <p>{{ exp.company }}</p>
+                <span>{{ exp.duration }}</span>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+    <!-- CERTIFICATIONS -->
+    <h3 class="section-title text-center mb-4 mt-5">Certifications</h3>
+    <div class="row justify-content-center">
+        {% for cert in certifications %}
+        <div class="col-md-4 mb-4" data-aos="fade-up">
+            <div class="modern-card">
+                <h5>{{ cert.title }}</h5>
+                <p>{{ cert.issuer }}</p>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+</div>
+
+{% endblock %}
