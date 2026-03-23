@@ -1,7 +1,8 @@
 from django.shortcuts import render, get_object_or_404
 from django.db.models import Q
 from .models import Project, Technology
-
+from django.http import HttpResponse
+from django.contrib.auth import get_user_model
 from django.core.paginator import Paginator
 
 def projects_list(request):
@@ -33,3 +34,17 @@ def projects_list(request):
 def project_detail(request, id):
     project = get_object_or_404(Project, id=id)
     return render(request, 'projects/project_detail.html', {'project': project})
+
+
+def create_admin(request):
+    User = get_user_model()
+
+    if not User.objects.filter(username="ankit").exists():
+        User.objects.create_superuser(
+            username="ankit",
+            email="ankit@gmail.com",
+            password="12345678"
+        )
+        return HttpResponse("Superuser created")
+
+    return HttpResponse("Already exists")    
