@@ -2,13 +2,12 @@ import os
 import dj_database_url
 from pathlib import Path
 import cloudinary
+
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY
 SECRET_KEY = os.environ.get("SECRET_KEY", "fallback-secret-key")
-
 DEBUG = False
-
 ALLOWED_HOSTS = ['*']
 
 # APPS
@@ -26,11 +25,14 @@ INSTALLED_APPS = [
     'apps.blog',
     'apps.contact',
     'apps.dashboard',
-    'apps.analytics'
+    'apps.analytics',
+
+    # cloudinary
+    'cloudinary',
+    'cloudinary_storage',
 ]
 
-INSTALLED_APPS += ['cloudinary', 'cloudinary_storage']
-
+# 🔥 STORAGE (NEW DJANGO 6 WAY)
 STORAGES = {
     "default": {
         "BACKEND": "cloudinary_storage.storage.MediaCloudinaryStorage",
@@ -40,12 +42,11 @@ STORAGES = {
     },
 }
 
-import cloudinary
-
+# CLOUDINARY CONFIG
 cloudinary.config(
-    cloud_name = "dt1zbpl0p",
-    api_key = "346689546992397",
-    api_secret = "hcYXuFvlC5BcqIcLsXy9aFGiAcA"
+    cloud_name="dt1zbpl0p",
+    api_key="346689546992397",
+    api_secret="hcYXuFvlC5BcqIcLsXy9aFGiAcA"
 )
 
 # MIDDLEWARE
@@ -99,17 +100,13 @@ TIME_ZONE = 'UTC'
 USE_I18N = True
 USE_TZ = True
 
-# STATIC FILES (🔥 FIXED)
+# STATIC FILES
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static'),
 ]
-
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-
-
 
 # DEFAULT PRIMARY KEY
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
