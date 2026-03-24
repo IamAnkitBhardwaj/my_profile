@@ -27,20 +27,10 @@ INSTALLED_APPS = [
     'apps.dashboard',
     'apps.analytics',
 
-    # cloudinary
+    # Cloudinary
     'cloudinary',
     'cloudinary_storage',
 ]
-
-# 🔥 STORAGE (NEW DJANGO 6 WAY)
-STORAGES = {
-    "default": {
-        "BACKEND": "cloudinary_storage.storage.MediaCloudinaryStorage",
-    },
-    "staticfiles": {
-        "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
-    },
-}
 
 # CLOUDINARY CONFIG
 cloudinary.config(
@@ -49,10 +39,19 @@ cloudinary.config(
     api_secret="hcYXuFvlC5BcqIcLsXy9aFGiAcA"
 )
 
+# 🔥 IMPORTANT (STABLE METHOD)
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+
+# STATIC FILES
+STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
 # MIDDLEWARE
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',  # IMPORTANT
+    'whitenoise.middleware.WhiteNoiseMiddleware',  # MUST
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -99,12 +98,6 @@ LANGUAGE_CODE = 'en-us'
 TIME_ZONE = 'UTC'
 USE_I18N = True
 USE_TZ = True
-
-# STATIC FILES
-STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-
-
 
 # DEFAULT PRIMARY KEY
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
