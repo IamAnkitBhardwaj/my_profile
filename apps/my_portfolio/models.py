@@ -1,10 +1,10 @@
 from django.db import models
-
+from cloudinary.models import CloudinaryField
 class Profile(models.Model):
     name = models.CharField(max_length=100)
     tagline = models.CharField(max_length=200)
     bio = models.TextField()
-    image = models.ImageField(upload_to='profile/')
+    image = CloudinaryField('image')
     resume = models.FileField(upload_to='resume/')
     
     def __str__(self):
