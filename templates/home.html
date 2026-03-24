@@ -556,7 +556,7 @@
                 <p class="hero-bio" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="400" data-aos-once="true">{{ profile.bio }}</p>
                 <div class="hero-buttons" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="600" data-aos-once="true">
                     {% if profile.resume %}
-                    <a href="{{ profile.resume.url }}" class="btn-primary" download>
+                    <a href="{{ profile.resume.url|safe }}" class="btn-primary" download>
                         <i class="fas fa-download"></i> Download CV
                     </a>
                     {% endif %}
