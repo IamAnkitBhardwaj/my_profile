@@ -103,3 +103,7 @@ USE_TZ = True
 
 # DEFAULT PRIMARY KEY
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+CLOUDINARY_STORAGE = {
+    'RESOURCE_TYPE': 'raw',
+}

@@ -1,5 +1,6 @@
 from django.db import models
 from django.utils.text import slugify
+from cloudinary.models import CloudinaryField
 class BlogCategory(models.Model):
     name = models.CharField(max_length=100)
 
@@ -11,7 +12,7 @@ class Blog(models.Model):
     title = models.CharField(max_length=200)
     slug = models.SlugField(unique=True, blank=True)
     content = models.TextField()
-    image = models.ImageField(upload_to='blogs/')
+    image = CloudinaryField('image')
     created_at = models.DateTimeField(auto_now_add=True)
 
     def save(self, *args, **kwargs):
