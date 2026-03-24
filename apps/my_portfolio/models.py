@@ -5,7 +5,7 @@ class Profile(models.Model):
     tagline = models.CharField(max_length=200)
     bio = models.TextField()
     image = CloudinaryField('image')
-    resume = models.FileField(upload_to='resume/')
+    resume = CloudinaryField(resource_type='raw')
     
     def __str__(self):
         return self.name

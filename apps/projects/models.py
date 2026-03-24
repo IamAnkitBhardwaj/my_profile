@@ -1,5 +1,5 @@
 from django.db import models
-
+from cloudinary.models import CloudinaryField
 class Category(models.Model):
     name = models.CharField(max_length=100)
 
@@ -15,7 +15,7 @@ class Technology(models.Model):
 class Project(models.Model):
     title = models.CharField(max_length=200)
     description = models.TextField()
-    image = models.ImageField(upload_to='projects/')
+    image = CloudinaryField('image')
     github_link = models.URLField(blank=True, null=True)
     live_link = models.URLField(blank=True, null=True)
     # tech_stack = models.CharField(max_length=200)
