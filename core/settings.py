@@ -29,6 +29,18 @@ INSTALLED_APPS = [
     'apps.analytics'
 ]
 
+INSTALLED_APPS += ['cloudinary', 'cloudinary_storage']
+
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+
+import cloudinary
+
+cloudinary.config(
+    cloud_name = "dt1zbpl0p",
+    api_key = "346689546992397",
+    api_secret = "hcYXuFvlC5BcqIcLsXy9aFGiAcA"
+)
+
 # MIDDLEWARE
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
