@@ -1,7 +1,6 @@
 {% extends 'base.html' %}
 
 {% block content %}
-{% load static %}
 <style>
     /* Premium Color Scheme */
     :root {
@@ -15,17 +14,17 @@
         --text-light: #ffffff;
         --text-dark: #2d3748;
     }
-
+    
     * {
         margin: 0;
         padding: 0;
         box-sizing: border-box;
     }
-
+    
     body {
         background: var(--dark-bg);
     }
-
+    
     /* Hero Section */
     .hero {
         background: linear-gradient(135deg, #0f0f1f 0%, #1a1a2e 100%);
@@ -33,7 +32,7 @@
         position: relative;
         overflow: hidden;
     }
-
+    
     .hero::before {
         content: '';
         position: absolute;
@@ -44,19 +43,12 @@
         background: radial-gradient(circle at 20% 50%, rgba(102, 126, 234, 0.15) 0%, transparent 50%);
         animation: pulse 4s ease-in-out infinite;
     }
-
+    
     @keyframes pulse {
-
-        0%,
-        100% {
-            opacity: 0.5;
-        }
-
-        50% {
-            opacity: 1;
-        }
+        0%, 100% { opacity: 0.5; }
+        50% { opacity: 1; }
     }
-
+    
     .hero-wrapper {
         display: flex;
         align-items: center;
@@ -65,7 +57,7 @@
         position: relative;
         z-index: 2;
     }
-
+    
     .hero-name {
         font-size: 64px;
         font-weight: 800;
@@ -77,19 +69,12 @@
         animation: gradientShift 5s ease infinite;
         background-size: 200% 200%;
     }
-
+    
     @keyframes gradientShift {
-
-        0%,
-        100% {
-            background-position: 0% 50%;
-        }
-
-        50% {
-            background-position: 100% 50%;
-        }
+        0%, 100% { background-position: 0% 50%; }
+        50% { background-position: 100% 50%; }
     }
-
+    
     .hero-tagline {
         font-size: 28px;
         font-weight: 700;
@@ -98,20 +83,20 @@
         -webkit-text-fill-color: transparent;
         margin-bottom: 20px;
     }
-
+    
     .hero-bio {
         font-size: 18px;
         color: #a0aec0;
         line-height: 1.7;
         margin-bottom: 35px;
     }
-
+    
     .hero-buttons {
         display: flex;
         gap: 20px;
         flex-wrap: wrap;
     }
-
+    
     .btn-primary {
         display: inline-flex;
         align-items: center;
@@ -126,7 +111,7 @@
         position: relative;
         overflow: hidden;
     }
-
+    
     .btn-primary::before {
         content: '';
         position: absolute;
@@ -134,22 +119,22 @@
         left: 50%;
         width: 0;
         height: 0;
-        background: rgba(255, 255, 255, 0.3);
+        background: rgba(255,255,255,0.3);
         border-radius: 50%;
         transform: translate(-50%, -50%);
         transition: width 0.6s, height 0.6s;
     }
-
+    
     .btn-primary:hover::before {
         width: 300px;
         height: 300px;
     }
-
+    
     .btn-primary:hover {
         transform: translateY(-3px);
         box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
     }
-
+    
     .btn-outline {
         display: inline-flex;
         align-items: center;
@@ -163,70 +148,43 @@
         border: 2px solid #667eea;
         transition: all 0.3s ease;
     }
-
+    
     .btn-outline:hover {
         background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
         color: white;
         border-color: transparent;
         transform: translateY(-3px);
     }
-
+    
     .hero-image img {
         width: 380px;
         height: 380px;
         border-radius: 50%;
         object-fit: cover;
         border: 5px solid rgba(102, 126, 234, 0.5);
-        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        box-shadow: 0 20px 40px rgba(0,0,0,0.3);
         animation: float 3s ease-in-out infinite;
     }
-
+    
     @keyframes float {
-
-        0%,
-        100% {
-            transform: translateY(0px);
-        }
-
-        50% {
-            transform: translateY(-20px);
-        }
+        0%, 100% { transform: translateY(0px); }
+        50% { transform: translateY(-20px); }
     }
-
+    
     .hero-social {
         display: flex;
         justify-content: center;
         gap: 15px;
         margin-top: 40px;
     }
-
+    
     /* Colorful Social Icons */
-    .hero-social a:nth-child(1) {
-        background: #E1306C;
-    }
-
-    /* Instagram */
-    .hero-social a:nth-child(2) {
-        background: #1DA1F2;
-    }
-
-    /* Twitter */
-    .hero-social a:nth-child(3) {
-        background: #0077B5;
-    }
-
-    /* LinkedIn */
-    .hero-social a:nth-child(5) {
-        background: #333333;
-    }
-
-    /* GitHub */
-    .hero-social a:nth-child(4) {
-        background: #FF0000;
-    }
-
-    /* YouTube */
-
+    .hero-social a:nth-child(1) { background: #E1306C; } /* Instagram */
+    .hero-social a:nth-child(2) { background: #1DA1F2; } /* Twitter */
+    .hero-social a:nth-child(3) { background: #0077B5; } /* LinkedIn */
+    .hero-social a:nth-child(5) { background: #333333; } /* GitHub */
+    .hero-social a:nth-child(4) { background: #FF0000; } /* YouTube */
+    
     .hero-social a {
         width: 48px;
         height: 48px;
@@ -240,37 +198,27 @@
         text-decoration: none;
         animation: bounceIn 0.6s ease-out;
     }
-
+    
     @keyframes bounceIn {
-        0% {
-            opacity: 0;
-            transform: scale(0);
-        }
-
-        50% {
-            transform: scale(1.1);
-        }
-
-        100% {
-            opacity: 1;
-            transform: scale(1);
-        }
+        0% { opacity: 0; transform: scale(0); }
+        50% { transform: scale(1.1); }
+        100% { opacity: 1; transform: scale(1); }
     }
-
+    
     .hero-social a:hover {
         transform: translateY(-8px) rotate(360deg);
-        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        box-shadow: 0 10px 25px rgba(0,0,0,0.2);
     }
-
+    
     /* Section Styles */
     .section {
         padding: 100px 0;
     }
-
+    
     .section-gradient {
         background: linear-gradient(135deg, #0f0f1f 0%, #1a1a2e 100%);
     }
-
+    
     .section-title {
         font-size: 48px;
         font-weight: 800;
@@ -282,7 +230,7 @@
         position: relative;
         animation: gradientShift 5s ease infinite;
     }
-
+    
     .section-title::after {
         content: '';
         position: absolute;
@@ -295,17 +243,12 @@
         border-radius: 2px;
         animation: widthExpand 0.8s ease-out;
     }
-
+    
     @keyframes widthExpand {
-        from {
-            width: 0;
-        }
-
-        to {
-            width: 100px;
-        }
+        from { width: 0; }
+        to { width: 100px; }
     }
-
+    
     /* Colorful Skills Badges */
     .skills-container {
         display: flex;
@@ -313,7 +256,7 @@
         gap: 15px;
         justify-content: center;
     }
-
+    
     .skill-badge {
         padding: 12px 28px;
         border-radius: 50px;
@@ -326,76 +269,28 @@
         color: white;
         animation: fadeInUp 0.6s ease-out;
     }
-
+    
     /* Random vibrant colors for skills */
-    .skill-badge:nth-child(1) {
-        background: linear-gradient(135deg, #667eea, #764ba2);
-    }
-
-    .skill-badge:nth-child(2) {
-        background: linear-gradient(135deg, #f093fb, #f5576c);
-    }
-
-    .skill-badge:nth-child(3) {
-        background: linear-gradient(135deg, #4facfe, #00f2fe);
-    }
-
-    .skill-badge:nth-child(4) {
-        background: linear-gradient(135deg, #43e97b, #38f9d7);
-    }
-
-    .skill-badge:nth-child(5) {
-        background: linear-gradient(135deg, #fa709a, #fee140);
-    }
-
-    .skill-badge:nth-child(6) {
-        background: linear-gradient(135deg, #30cfd0, #330867);
-    }
-
-    .skill-badge:nth-child(7) {
-        background: linear-gradient(135deg, #a8edea, #fed6e3);
-        color: #333;
-    }
-
-    .skill-badge:nth-child(8) {
-        background: linear-gradient(135deg, #ff9a9e, #fecfef);
-        color: #333;
-    }
-
-    .skill-badge:nth-child(9) {
-        background: linear-gradient(135deg, #ffecd2, #fcb69f);
-        color: #333;
-    }
-
-    .skill-badge:nth-child(10) {
-        background: linear-gradient(135deg, #ff6e7f, #bfe9ff);
-    }
-
-    .skill-badge:nth-child(11) {
-        background: linear-gradient(135deg, #f093fb, #f5576c);
-    }
-
-    .skill-badge:nth-child(12) {
-        background: linear-gradient(135deg, #4facfe, #00f2fe);
-    }
-
-    .skill-badge:nth-child(13) {
-        background: linear-gradient(135deg, #43e97b, #38f9d7);
-    }
-
-    .skill-badge:nth-child(14) {
-        background: linear-gradient(135deg, #fa709a, #fee140);
-    }
-
-    .skill-badge:nth-child(15) {
-        background: linear-gradient(135deg, #30cfd0, #330867);
-    }
-
+    .skill-badge:nth-child(1) { background: linear-gradient(135deg, #667eea, #764ba2); }
+    .skill-badge:nth-child(2) { background: linear-gradient(135deg, #f093fb, #f5576c); }
+    .skill-badge:nth-child(3) { background: linear-gradient(135deg, #4facfe, #00f2fe); }
+    .skill-badge:nth-child(4) { background: linear-gradient(135deg, #43e97b, #38f9d7); }
+    .skill-badge:nth-child(5) { background: linear-gradient(135deg, #fa709a, #fee140); }
+    .skill-badge:nth-child(6) { background: linear-gradient(135deg, #30cfd0, #330867); }
+    .skill-badge:nth-child(7) { background: linear-gradient(135deg, #a8edea, #fed6e3); color: #333; }
+    .skill-badge:nth-child(8) { background: linear-gradient(135deg, #ff9a9e, #fecfef); color: #333; }
+    .skill-badge:nth-child(9) { background: linear-gradient(135deg, #ffecd2, #fcb69f); color: #333; }
+    .skill-badge:nth-child(10) { background: linear-gradient(135deg, #ff6e7f, #bfe9ff); }
+    .skill-badge:nth-child(11) { background: linear-gradient(135deg, #f093fb, #f5576c); }
+    .skill-badge:nth-child(12) { background: linear-gradient(135deg, #4facfe, #00f2fe); }
+    .skill-badge:nth-child(13) { background: linear-gradient(135deg, #43e97b, #38f9d7); }
+    .skill-badge:nth-child(14) { background: linear-gradient(135deg, #fa709a, #fee140); }
+    .skill-badge:nth-child(15) { background: linear-gradient(135deg, #30cfd0, #330867); }
     .skill-badge:hover {
         transform: translateY(-5px) scale(1.05);
-        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        box-shadow: 0 10px 25px rgba(0,0,0,0.2);
     }
-
+    
     /* Premium Cards */
     .cards-grid {
         display: grid;
@@ -403,7 +298,7 @@
         gap: 35px;
         margin-top: 40px;
     }
-
+    
     .premium-card {
         background: rgba(255, 255, 255, 0.05);
         backdrop-filter: blur(10px);
@@ -415,7 +310,7 @@
         position: relative;
         overflow: hidden;
     }
-
+    
     .premium-card::before {
         content: '';
         position: absolute;
@@ -423,20 +318,20 @@
         left: -100%;
         width: 100%;
         height: 100%;
-        background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+        background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
         transition: left 0.6s;
     }
-
+    
     .premium-card:hover::before {
         left: 100%;
     }
-
+    
     .premium-card:hover {
         transform: translateY(-10px);
         border-color: rgba(102, 126, 234, 0.5);
-        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        box-shadow: 0 20px 40px rgba(0,0,0,0.3);
     }
-
+    
     .card-icon {
         width: 80px;
         height: 80px;
@@ -448,12 +343,12 @@
         margin: 0 auto 25px auto;
         position: relative;
     }
-
+    
     .card-icon i {
         font-size: 36px;
         color: white;
     }
-
+    
     .card-icon::after {
         content: '';
         position: absolute;
@@ -464,19 +359,12 @@
         animation: ripple 1.5s ease-out infinite;
         z-index: -1;
     }
-
+    
     @keyframes ripple {
-        0% {
-            transform: scale(1);
-            opacity: 0.5;
-        }
-
-        100% {
-            transform: scale(1.5);
-            opacity: 0;
-        }
+        0% { transform: scale(1); opacity: 0.5; }
+        100% { transform: scale(1.5); opacity: 0; }
     }
-
+    
     .premium-card h5 {
         font-size: 22px;
         font-weight: 700;
@@ -485,13 +373,13 @@
         -webkit-text-fill-color: transparent;
         margin-bottom: 12px;
     }
-
+    
     .premium-card p {
         font-size: 15px;
         color: #cbd5e0;
         margin-bottom: 15px;
     }
-
+    
     .premium-card .date {
         display: inline-block;
         padding: 6px 16px;
@@ -501,7 +389,7 @@
         color: #667eea;
         font-weight: 600;
     }
-
+    
     /* Project Cards */
     .project-card {
         background: rgba(255, 255, 255, 0.05);
@@ -511,33 +399,33 @@
         transition: all 0.4s ease;
         border: 1px solid rgba(255, 255, 255, 0.1);
     }
-
+    
     .project-card:hover {
         transform: translateY(-10px);
         border-color: rgba(102, 126, 234, 0.5);
-        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        box-shadow: 0 20px 40px rgba(0,0,0,0.3);
     }
-
+    
     .project-img {
         height: 240px;
         overflow: hidden;
     }
-
+    
     .project-img img {
         width: 100%;
         height: 100%;
         object-fit: cover;
         transition: transform 0.5s;
     }
-
+    
     .project-card:hover .project-img img {
         transform: scale(1.1);
     }
-
+    
     .project-content {
         padding: 25px;
     }
-
+    
     .project-content h5 {
         font-size: 20px;
         font-weight: 700;
@@ -546,14 +434,14 @@
         -webkit-text-fill-color: transparent;
         margin-bottom: 15px;
     }
-
+    
     .tech-stack {
         display: flex;
         flex-wrap: wrap;
         gap: 10px;
         margin-bottom: 20px;
     }
-
+    
     /* Colorful tech tags */
     .tech-tag {
         padding: 6px 14px;
@@ -563,32 +451,18 @@
         color: white;
         animation: fadeIn 0.5s ease-out;
     }
-
-    .tech-tag:nth-child(1) {
-        background: linear-gradient(135deg, #667eea, #764ba2);
-    }
-
-    .tech-tag:nth-child(2) {
-        background: linear-gradient(135deg, #f093fb, #f5576c);
-    }
-
-    .tech-tag:nth-child(3) {
-        background: linear-gradient(135deg, #4facfe, #00f2fe);
-    }
-
-    .tech-tag:nth-child(4) {
-        background: linear-gradient(135deg, #43e97b, #38f9d7);
-    }
-
-    .tech-tag:nth-child(5) {
-        background: linear-gradient(135deg, #fa709a, #fee140);
-    }
-
+    
+    .tech-tag:nth-child(1) { background: linear-gradient(135deg, #667eea, #764ba2); }
+    .tech-tag:nth-child(2) { background: linear-gradient(135deg, #f093fb, #f5576c); }
+    .tech-tag:nth-child(3) { background: linear-gradient(135deg, #4facfe, #00f2fe); }
+    .tech-tag:nth-child(4) { background: linear-gradient(135deg, #43e97b, #38f9d7); }
+    .tech-tag:nth-child(5) { background: linear-gradient(135deg, #fa709a, #fee140); }
+    
     .project-actions {
         display: flex;
         gap: 12px;
     }
-
+    
     .project-btn {
         width: 44px;
         height: 44px;
@@ -599,23 +473,15 @@
         transition: all 0.3s ease;
         color: white;
     }
-
-    .project-btn.github {
-        background: #333;
-    }
-
-    .project-btn.live {
-        background: linear-gradient(135deg, #667eea, #764ba2);
-    }
-
-    .project-btn.details {
-        background: linear-gradient(135deg, #f093fb, #f5576c);
-    }
-
+    
+    .project-btn.github { background: #333; }
+    .project-btn.live { background: linear-gradient(135deg, #667eea, #764ba2); }
+    .project-btn.details { background: linear-gradient(135deg, #f093fb, #f5576c); }
+    
     .project-btn:hover {
         transform: translateY(-5px) rotate(360deg);
     }
-
+    
     /* Splide Custom */
     .splide__arrow {
         background: rgba(102, 126, 234, 0.8);
@@ -624,139 +490,59 @@
         border-radius: 50%;
         opacity: 1;
     }
-
+    
     .splide__arrow svg {
         fill: white;
     }
-
+    
     .splide__arrow:hover {
         background: linear-gradient(135deg, #667eea, #764ba2);
         transform: scale(1.1);
     }
-
+    
     .splide__pagination__page {
         width: 12px;
         height: 12px;
         background: #4a5568;
     }
-
+    
     .splide__pagination__page.is-active {
         background: linear-gradient(135deg, #667eea, #764ba2);
         transform: scale(1.3);
     }
-
+    
     /* Responsive */
     @media (max-width: 1024px) {
-        .hero-name {
-            font-size: 48px;
-        }
-
-        .hero-tagline {
-            font-size: 24px;
-        }
-
-        .hero-image img {
-            width: 300px;
-            height: 300px;
-        }
-
-        .section-title {
-            font-size: 40px;
-        }
+        .hero-name { font-size: 48px; }
+        .hero-tagline { font-size: 24px; }
+        .hero-image img { width: 300px; height: 300px; }
+        .section-title { font-size: 40px; }
     }
-
+    
     @media (max-width: 768px) {
-        .hero {
-            padding: 60px 0;
-        }
-
-        .hero-wrapper {
-            flex-direction: column;
-            text-align: center;
-            gap: 40px;
-        }
-
-        .hero-name {
-            font-size: 36px;
-        }
-
-        .hero-tagline {
-            font-size: 20px;
-        }
-
-        .hero-bio {
-            font-size: 16px;
-        }
-
-        .hero-buttons {
-            justify-content: center;
-        }
-
-        .hero-image img {
-            width: 250px;
-            height: 250px;
-        }
-
-        .section {
-            padding: 60px 0;
-        }
-
-        .section-title {
-            font-size: 32px;
-        }
-
-        .cards-grid {
-            grid-template-columns: 1fr;
-            gap: 25px;
-        }
-
-        .skill-badge {
-            padding: 8px 20px;
-            font-size: 13px;
-        }
+        .hero { padding: 60px 0; }
+        .hero-wrapper { flex-direction: column; text-align: center; gap: 40px; }
+        .hero-name { font-size: 36px; }
+        .hero-tagline { font-size: 20px; }
+        .hero-bio { font-size: 16px; }
+        .hero-buttons { justify-content: center; }
+        .hero-image img { width: 250px; height: 250px; }
+        .section { padding: 60px 0; }
+        .section-title { font-size: 32px; }
+        .cards-grid { grid-template-columns: 1fr; gap: 25px; }
+        .skill-badge { padding: 8px 20px; font-size: 13px; }
     }
-
+    
     @media (max-width: 480px) {
-        .hero-name {
-            font-size: 28px;
-        }
-
-        .hero-tagline {
-            font-size: 18px;
-        }
-
-        .hero-bio {
-            font-size: 14px;
-        }
-
-        .btn-primary,
-        .btn-outline {
-            padding: 10px 24px;
-            font-size: 14px;
-        }
-
-        .hero-image img {
-            width: 200px;
-            height: 200px;
-        }
-
-        .hero-social a {
-            width: 40px;
-            height: 40px;
-            font-size: 18px;
-        }
-
-        .section-title {
-            font-size: 28px;
-        }
-
-        .premium-card {
-            padding: 25px 20px;
-        }
-
-        .premium-card h5 {
-            font-size: 18px;
-        }
+        .hero-name { font-size: 28px; }
+        .hero-tagline { font-size: 18px; }
+        .hero-bio { font-size: 14px; }
+        .btn-primary, .btn-outline { padding: 10px 24px; font-size: 14px; }
+        .hero-image img { width: 200px; height: 200px; }
+        .hero-social a { width: 40px; height: 40px; font-size: 18px; }
+        .section-title { font-size: 28px; }
+        .premium-card { padding: 25px 20px; }
+        .premium-card h5 { font-size: 18px; }
     }
 </style>
 
@@ -765,33 +551,27 @@
     <div class="container">
         <div class="hero-wrapper">
             <div class="hero-left">
-                <h1 class="hero-name" data-aos="fade-up" data-aos-duration="1000" data-aos-once="true">{{ profile.name
-                    }}</h1>
-                <p class="hero-tagline" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200"
-                    data-aos-once="true">{{ profile.tagline }}</p>
-                <p class="hero-bio" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="400"
-                    data-aos-once="true">{{ profile.bio }}</p>
-                <div class="hero-buttons" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="600"
-                    data-aos-once="true">
-                    
-                    <a href="{% static 'files/resume.pdf' %}" download class="btn btn-primary">
-                        Download Resume
+                <h1 class="hero-name" data-aos="fade-up" data-aos-duration="1000" data-aos-once="true">{{ profile.name }}</h1>
+                <p class="hero-tagline" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200" data-aos-once="true">{{ profile.tagline }}</p>
+                <p class="hero-bio" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="400" data-aos-once="true">{{ profile.bio }}</p>
+                <div class="hero-buttons" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="600" data-aos-once="true">
+                    {% if profile.resume %}
+                    <a href="{{ profile.resume.url|safe }}" class="btn-primary" download>
+                        <i class="fas fa-download"></i> Download CV
                     </a>
-                    
+                    {% endif %}
                     <a href="/contact/" class="btn-outline">
                         <i class="fas fa-paper-plane"></i> Hire Me
                     </a>
                 </div>
             </div>
-            <div class="hero-right" data-aos="zoom-in" data-aos-duration="1000" data-aos-delay="300"
-                data-aos-once="true">
+            <div class="hero-right" data-aos="zoom-in" data-aos-duration="1000" data-aos-delay="300" data-aos-once="true">
                 <div class="hero-image">
                     <img src="{{ profile.image.url }}" alt="{{ profile.name }}">
                 </div>
                 <div class="hero-social">
                     {% for social in social_links %}
-                    <a href="{{ social.link }}" target="_blank" data-aos="fade-up" data-aos-duration="600"
-                        data-aos-delay="{{ forloop.counter|add:700 }}" data-aos-once="true">
+                    <a href="{{ social.link }}" target="_blank" data-aos="fade-up" data-aos-duration="600" data-aos-delay="{{ forloop.counter|add:700 }}" data-aos-once="true">
                         <i class="{{ social.icon }}"></i>
                     </a>
                     {% endfor %}
@@ -804,14 +584,11 @@
 <!-- Skills Section -->
 <section class="section">
     <div class="container">
-        <h2 class="section-title" data-aos="fade-up" data-aos-duration="800" data-aos-once="true">Technical <span
-                style="background: linear-gradient(135deg, #f093fb, #f5576c); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Mastery</span>
-        </h2>
-
+        <h2 class="section-title" data-aos="fade-up" data-aos-duration="800" data-aos-once="true">Technical <span style="background: linear-gradient(135deg, #f093fb, #f5576c); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Mastery</span></h2>
+        
         <div class="row">
             <div class="col-md-6 mb-5" data-aos="fade-up" data-aos-duration="800" data-aos-once="true">
-                <h3 class="mb-4 text-center"
-                    style="font-size: 28px; font-weight: 700; background: linear-gradient(135deg, #667eea, #764ba2); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
+                <h3 class="mb-4 text-center" style="font-size: 28px; font-weight: 700; background: linear-gradient(135deg, #667eea, #764ba2); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
                     <i class="fas fa-code"></i> Core Skills
                 </h3>
                 <div class="skills-container">
@@ -825,10 +602,9 @@
                     {% endfor %}
                 </div>
             </div>
-
+            
             <div class="col-md-6 mb-5" data-aos="fade-up" data-aos-duration="800" data-aos-once="true">
-                <h3 class="mb-4 text-center"
-                    style="font-size: 28px; font-weight: 700; background: linear-gradient(135deg, #f093fb, #f5576c); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
+                <h3 class="mb-4 text-center" style="font-size: 28px; font-weight: 700; background: linear-gradient(135deg, #f093fb, #f5576c); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
                     <i class="fas fa-tools"></i> Tools & Tech
                 </h3>
                 <div class="skills-container">
@@ -849,10 +625,8 @@
 <!-- Projects Section -->
 <section class="section section-gradient">
     <div class="container">
-        <h2 class="section-title" data-aos="fade-up" data-aos-duration="800" data-aos-once="true">Featured <span
-                style="background: linear-gradient(135deg, #4facfe, #00f2fe); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Projects</span>
-        </h2>
-
+        <h2 class="section-title" data-aos="fade-up" data-aos-duration="800" data-aos-once="true">Featured <span style="background: linear-gradient(135deg, #4facfe, #00f2fe); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Projects</span></h2>
+        
         <div id="project-slider" class="splide" data-aos="fade-up" data-aos-duration="1000" data-aos-once="true">
             <div class="splide__track">
                 <ul class="splide__list">
@@ -897,14 +671,11 @@
 <!-- Education Section -->
 <section class="section">
     <div class="container">
-        <h2 class="section-title" data-aos="fade-up" data-aos-duration="800" data-aos-once="true">Academic <span
-                style="background: linear-gradient(135deg, #43e97b, #38f9d7); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Journey</span>
-        </h2>
-
+        <h2 class="section-title" data-aos="fade-up" data-aos-duration="800" data-aos-once="true">Academic <span style="background: linear-gradient(135deg, #43e97b, #38f9d7); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Journey</span></h2>
+        
         <div class="cards-grid">
             {% for edu in education %}
-            <div class="premium-card" data-aos="flip-left" data-aos-duration="800"
-                data-aos-delay="{{ forloop.counter|add:100 }}" data-aos-once="true">
+            <div class="premium-card" data-aos="flip-left" data-aos-duration="800" data-aos-delay="{{ forloop.counter|add:100 }}" data-aos-once="true">
                 <div class="card-icon">
                     <i class="fas fa-graduation-cap"></i>
                 </div>
@@ -920,14 +691,11 @@
 <!-- Experience Section -->
 <section class="section section-gradient">
     <div class="container">
-        <h2 class="section-title" data-aos="fade-up" data-aos-duration="800" data-aos-once="true">Professional <span
-                style="background: linear-gradient(135deg, #fa709a, #fee140); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Experience</span>
-        </h2>
-
+        <h2 class="section-title" data-aos="fade-up" data-aos-duration="800" data-aos-once="true">Professional <span style="background: linear-gradient(135deg, #fa709a, #fee140); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Experience</span></h2>
+        
         <div class="cards-grid">
             {% for exp in experience %}
-            <div class="premium-card" data-aos="flip-right" data-aos-duration="800"
-                data-aos-delay="{{ forloop.counter|add:100 }}" data-aos-once="true">
+            <div class="premium-card" data-aos="flip-right" data-aos-duration="800" data-aos-delay="{{ forloop.counter|add:100 }}" data-aos-once="true">
                 <div class="card-icon">
                     <i class="fas fa-briefcase"></i>
                 </div>
@@ -943,14 +711,11 @@
 <!-- Certifications Section -->
 <section class="section">
     <div class="container">
-        <h2 class="section-title" data-aos="fade-up" data-aos-duration="800" data-aos-once="true">Certifications & <span
-                style="background: linear-gradient(135deg, #30cfd0, #330867); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Achievements</span>
-        </h2>
-
+        <h2 class="section-title" data-aos="fade-up" data-aos-duration="800" data-aos-once="true">Certifications & <span style="background: linear-gradient(135deg, #30cfd0, #330867); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Achievements</span></h2>
+        
         <div class="cards-grid">
             {% for cert in certifications %}
-            <div class="premium-card" data-aos="zoom-in" data-aos-duration="800"
-                data-aos-delay="{{ forloop.counter|add:100 }}" data-aos-once="true">
+            <div class="premium-card" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="{{ forloop.counter|add:100 }}" data-aos-once="true">
                 <div class="card-icon">
                     <i class="fas fa-certificate"></i>
                 </div>
@@ -965,14 +730,11 @@
 <!-- Clients Section -->
 <section class="section section-gradient">
     <div class="container">
-        <h2 class="section-title" data-aos="fade-up" data-aos-duration="800" data-aos-once="true">Trusted <span
-                style="background: linear-gradient(135deg, #ff9a9e, #fecfef); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Partners</span>
-        </h2>
-
+        <h2 class="section-title" data-aos="fade-up" data-aos-duration="800" data-aos-once="true">Trusted <span style="background: linear-gradient(135deg, #ff9a9e, #fecfef); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Partners</span></h2>
+        
         <div class="cards-grid">
             {% for client in clients %}
-            <div class="premium-card" data-aos="zoom-in-up" data-aos-duration="800"
-                data-aos-delay="{{ forloop.counter|add:100 }}" data-aos-once="true">
+            <div class="premium-card" data-aos="zoom-in-up" data-aos-duration="800" data-aos-delay="{{ forloop.counter|add:100 }}" data-aos-once="true">
                 <div class="card-icon">
                     <i class="fas fa-handshake"></i>
                 </div>
@@ -985,7 +747,7 @@
 </section>
 
 <script>
-    document.addEventListener('DOMContentLoaded', function () {
+    document.addEventListener('DOMContentLoaded', function() {
         // Initialize Splide Slider
         if (document.querySelector('#project-slider')) {
             var splide = new Splide('#project-slider', {
@@ -1005,7 +767,7 @@
             });
             splide.mount();
         }
-
+        
         // Force AOS initialization with mobile support
         if (typeof AOS !== 'undefined') {
             AOS.init({
@@ -1023,21 +785,21 @@
                 mirror: false,
                 anchorPlacement: 'top-bottom'
             });
-
+            
             // Refresh AOS after all content loads
-            setTimeout(function () {
+            setTimeout(function() {
                 AOS.refresh();
             }, 100);
-
+            
             // Re-initialize on window resize for mobile
-            window.addEventListener('resize', function () {
+            window.addEventListener('resize', function() {
                 AOS.refresh();
             });
         }
-
+        
         // Smooth scroll
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
+            anchor.addEventListener('click', function(e) {
                 const href = this.getAttribute('href');
                 if (href !== '#' && href !== '') {
                     e.preventDefault();
