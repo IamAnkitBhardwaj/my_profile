@@ -1,0 +1,126 @@
+
+{% extends 'base.html' %}
+
+{% block title %}Referral Program | Ankit Bhardwaj{% endblock %}
+
+{% block content %}
+
+<section class="py-5">
+    <div class="container">
+
+        <!-- Heading -->
+        <div class="text-center mb-5">
+            <h1 class="fw-bold">Referral Program</h1>
+            <p class="text-muted mt-3">
+                Looking for a TCS opportunity? Submit your details and
+                I will review your profile for referral assistance.
+            </p>
+        </div>
+
+        <!-- Information -->
+        <div class="row justify-content-center mb-5">
+            <div class="col-lg-8">
+                <div class="card border-0 shadow-sm">
+                    <div class="card-body p-4">
+
+                        <h4 class="fw-bold mb-3">
+                            How It Works
+                        </h4>
+
+                        <div class="mb-2">
+                            <strong>1.</strong>
+                            Submit your basic details and resume.
+                        </div>
+
+                        <div class="mb-2">
+                            <strong>2.</strong>
+                            I will review your profile.
+                        </div>
+
+                        <div class="mb-2">
+                            <strong>3.</strong>
+                            If your profile is suitable for an applicable
+                            opportunity, I can assist with the referral process.
+                        </div>
+
+                        <div>
+                            <strong>4.</strong>
+                            Further assessment, interview and selection are
+                            handled through the official recruitment process.
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Referral Form -->
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+
+                <div class="card border-0 shadow-sm">
+                    <div class="card-body p-4 p-md-5">
+
+                        <h3 class="fw-bold mb-4">
+                            Submit Your Details
+                        </h3>
+
+                        <form method="POST" enctype="multipart/form-data">
+
+                            {% csrf_token %}
+
+                            {% for field in form %}
+                                <div class="mb-3">
+
+                                    <label for="{{ field.id_for_label }}"
+                                           class="form-label fw-semibold">
+                                        {{ field.label }}
+                                    </label>
+
+                                    {{ field }}
+
+                                    {% if field.help_text %}
+                                        <small class="form-text text-muted">
+                                            {{ field.help_text }}
+                                        </small>
+                                    {% endif %}
+
+                                    {% for error in field.errors %}
+                                        <div class="text-danger small mt-1">
+                                            {{ error }}
+                                        </div>
+                                    {% endfor %}
+
+                                </div>
+                            {% endfor %}
+
+                            <button type="submit"
+                                    class="btn btn-primary px-4 py-2 mt-2">
+                                Submit Application
+                            </button>
+
+                        </form>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Disclaimer -->
+        <div class="row justify-content-center mt-4">
+            <div class="col-lg-8">
+                <p class="text-muted small text-center">
+                    Referral assistance does not guarantee an interview,
+                    selection or employment. Recruitment decisions are made
+                    solely through the official recruitment process.
+                </p>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+
+
+{% endblock %}

@@ -26,6 +26,7 @@ INSTALLED_APPS = [
     'apps.contact',
     'apps.dashboard',
     'apps.analytics',
+    'apps.referral',
 
     # Cloudinary
     'cloudinary',
