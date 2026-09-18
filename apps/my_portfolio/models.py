@@ -18,7 +18,7 @@ class Skill(models.Model):
     ]
 
     name = models.CharField(max_length=100)
-    percentage = models.PositiveIntegerField()
+    order = models.PositiveIntegerField(default=0)
     type = models.CharField(
         max_length=20,
         choices=SKILL_TYPE_CHOICES,
@@ -36,7 +36,7 @@ class Skill(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
 
     class Meta:
-        ordering = ['-percentage']   # highest skill first
+        ordering = ['order']   # highest skill first
         verbose_name = "Skill"
         verbose_name_plural = "Skills"
 
