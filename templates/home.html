@@ -642,7 +642,7 @@
                             <div class="project-content">
                                 <h5 class="text-center">{{ project.title }}</h5>
                                 <div class="tech-stack">
-                                    {% for tech in project.technologies.all|slice:":3" %}
+                                    {% for tech in project.technologies.all|slice:":6" %}
                                     <span class="tech-tag">{{ tech.name }}</span>
                                     {% endfor %}
                                 </div>
