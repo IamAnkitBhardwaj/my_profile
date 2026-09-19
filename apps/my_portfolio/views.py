@@ -10,9 +10,9 @@ def home(request):
     projects = Project.objects.all()[:6]
     social_links = SocialLink.objects.all()
 
-    education = Education.objects.all()
-    experience = Experience.objects.all()
-    certifications = Certification.objects.all()
+    education = Education.objects.all().order_by('-year')
+    experience = Experience.objects.all().order_by('-created_at')
+    certifications = Certification.objects.all().order_by('-created_at')
     clients = Client.objects.all()
 
     return render(request, 'home.html', {
