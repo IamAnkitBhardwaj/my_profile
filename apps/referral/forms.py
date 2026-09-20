@@ -12,6 +12,8 @@ class ReferralApplicationForm(forms.ModelForm):
             'qualification',
             'graduation_year',
             'experience',
+            'current_company_name',
+            'experience_years',
             'skills',
             'preferred_location',
             'linkedin',
