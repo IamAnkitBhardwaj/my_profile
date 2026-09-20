@@ -18,7 +18,8 @@ class ReferralApplication(models.Model):
         max_length=20,
         choices=EXPERIENCE_CHOICES
     )
-
+    current_company_name = models.CharField(max_length=150, blank=True)
+    experience_years = models.PositiveIntegerField(blank=True, null=True)
     skills = models.TextField()
 
     preferred_location = models.CharField(max_length=150)
