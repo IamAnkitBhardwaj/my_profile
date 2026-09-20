@@ -49,7 +49,14 @@ class ReferralApplicationForm(forms.ModelForm):
             'experience': forms.Select(attrs={
                 'class': 'form-select',
             }),
-
+            'experience_years': forms.NumberInput(attrs={
+                'class': 'form-control',
+                'placeholder': 'e.g. 2',
+            }),
+            'current_company_name': forms.TextInput(attrs={
+                'class': 'form-control',
+                'placeholder': 'e.g. Google, Microsoft, Amazon',
+            }),
             'skills': forms.Textarea(attrs={
                 'class': 'form-control',
                 'rows': 3,
