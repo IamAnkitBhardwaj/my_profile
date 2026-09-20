@@ -48,7 +48,8 @@ class Skill(models.Model):
 class Education(models.Model):
     degree = models.CharField(max_length=200)
     institute = models.CharField(max_length=200)
-    year = models.CharField(max_length=50)
+    duration = models.CharField(max_length=50)
+    created_at = models.DateTimeField(auto_now_add=True)
     def __str__(self):
         return self.degree
 
@@ -57,6 +58,7 @@ class Experience(models.Model):
     role = models.CharField(max_length=200)
     company = models.CharField(max_length=200)
     duration = models.CharField(max_length=100)
+    created_at = models.DateTimeField(auto_now_add=True)
     # start_date = models.DateField()
     # end_date = models.CharField(max_length=100, blank=True, null=True)
 
@@ -67,6 +69,7 @@ class Experience(models.Model):
 class Certification(models.Model):
     title = models.CharField(max_length=200)
     issuer = models.CharField(max_length=200)
+    created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         return self.title

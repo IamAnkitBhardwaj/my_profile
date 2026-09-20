@@ -10,7 +10,7 @@ def home(request):
     projects = Project.objects.all()[:6]
     social_links = SocialLink.objects.all()
 
-    education = Education.objects.all().order_by('-year')
+    education = Education.objects.all().order_by('-created_at')
     experience = Experience.objects.all().order_by('-created_at')
     certifications = Certification.objects.all().order_by('-created_at')
     clients = Client.objects.all()
